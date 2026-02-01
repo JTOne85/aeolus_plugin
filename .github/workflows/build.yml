@@ -33,16 +33,11 @@ jobs:
             generator: Unix Makefiles
             path: ./build/Aeolus_artefacts/Release
             asio: OFF
-          - os: macos-latest
-            name: mac
+          - os: macos-12
+            name: mac-older
             generator: Unix Makefiles
             path: ./build/Aeolus_artefacts/Release
             asio: OFF
-          - os: windows-2022
-            name: win
-            generator: Visual Studio 17 2022
-            path: ./build/Aeolus_artefacts/Release
-            asio: ON
 
     steps:
     - name: Install Linux dependencies
@@ -50,7 +45,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install ninja-build libx11-dev libfreetype-dev libfontconfig-dev libasound2-dev libxrandr-dev libxinerama-dev libxcursor-dev
 
     - name: Install macOS dependencies
-      if: matrix.os == 'macos-latest'
+      if: matrix.os == 'macos-12'
       run: brew install ninja
 
     - name: Install Windows dependencies
