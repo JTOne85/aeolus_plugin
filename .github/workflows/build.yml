@@ -38,11 +38,16 @@ jobs:
             generator: Unix Makefiles
             path: ./build/Aeolus_artefacts/Release
             asio: OFF
-          - os: windows-2022
-            name: win
-            generator: Visual Studio 17 2022
+          - os: macos-12
+            name: mac-older
+            generator: Unix Makefiles
             path: ./build/Aeolus_artefacts/Release
-            asio: ON
+            asio: OFF
+          # - os: windows-2022
+            # name: win
+            # generator: Visual Studio 17 2022
+            # path: ./build/Aeolus_artefacts/Release
+            # asio: ON
 
     steps:
     - name: Install Linux dependencies
@@ -51,6 +56,10 @@ jobs:
 
     - name: Install macOS dependencies
       if: matrix.os == 'macos-latest'
+      run: brew install ninja
+
+    - name: Install macOS dependencies
+      if: matrix.os == 'macos-12'
       run: brew install ninja
 
     - name: Install Windows dependencies
